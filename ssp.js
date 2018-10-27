@@ -1,47 +1,32 @@
-var array = ["scissors", "paper", "stone"]; //постоянная с массивом значений
+var arrayOfGameValues = ["scissors", "paper", "stone"]; //постоянная с массивом значений
 
 function computerNumber() {
-    random = (Math.round(Math.random() *2)) // калькуляция рандомного значения из массива
+    random = Math.round(Math.random() *2) // калькуляция рандомного значения из массива
     return random;
 }
-function stone() { // функция камень
-    var randomIndex = computerNumber(); // переменная для исполнения одного значения 
-    console.log(`computer has ${array[randomIndex]}`); // консолька-фасолька
-    if (array[randomIndex] === "stone") { // сравнение
-        alert ('Ничья')
-    }
-    if (array[randomIndex] === "paper") {
-        alert ('Проигрыш')
-    }
-    if (array[randomIndex] === "scissors") {
-        alert ('Победа')
-    }
+function playerValue(value){
+    var playerValue = value;
+    computerValue = arrayOfGameValues[computerNumber()]
+    return gameBrain(playerValue, computerValue);
 }
-function scissors() { 
-    var randomIndex = computerNumber();
-    console.log(`computer has ${array[randomIndex]}`);
-    if (array[randomIndex] === "scissors") {
-        alert ('Ничья')
-    }
-
-    if (array[randomIndex] === "stone") {
-        alert ('Проигрыш')
-    }
-    if (array[randomIndex] === "paper") {
-        alert ('Победа')
-    }
-}
-function paper() {
-    var randomIndex = computerNumber();
-    console.log(`computer has ${array[randomIndex]}`);
-    if (array[randomIndex] === "paper") {
-        alert ('Ничья')
-    }
-
-    if (array[randomIndex] === "stone") {
-        alert ('Победа')
-    }
-    if (array[randomIndex] === "scissors") {
-        alert ('Проигрыш')
-    }
+function gameBrain(playerValue, computerValue) {
+    var result = '';
+    if (playerValue === computerValue) 
+        {result = 'Nichya'; 
+        alert(`Итог игры: ${result}\n
+         Ваш выбор: ${playerValue}\n 
+         Выбор противника: ${computerValue}`);
+        return}
+        
+    
+    if (playerValue === 'scissors' && computerValue === 'paper'
+     || playerValue === 'stone' && computerValue === 'scissors' 
+     || playerValue === 'paper' && computerValue === 'stone') {
+        result = 'win'
+    } else {
+        result = 'loose';
+    }     
+    alert(`Итог игры: ${result}\n 
+    Ваш выбор: ${playerValue}\n 
+    Выбор противника: ${computerValue}`) 
 }
